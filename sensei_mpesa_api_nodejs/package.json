@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "ngrok": "ngrok http 5000"
+    "ngrok": "ngrok http 9000"
   },
   "repository": {
     "type": "git",

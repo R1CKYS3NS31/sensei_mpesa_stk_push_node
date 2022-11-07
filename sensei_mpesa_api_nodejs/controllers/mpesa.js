@@ -100,12 +100,18 @@ class MpesaController {
 
   lipaNaMpesaOnlineCallback(req, res) {
     //Get the transaction description
-    let message = req.body.Body.stkCallback["ResultDesc"];
-
-    return res.send({
+    // let message = req.body.Body.stkCallback["ResultDesc"];
+    try {
+      let message = req;
+      console.log('message: '+message);
+      // console.log(res);
+    } catch (err) {
+      console.error(err);
+      return res.send({
       success: true,
       message:err,
     });
+    }
   }
 }
 
