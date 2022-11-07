@@ -55,8 +55,8 @@ class MpesaController {
     let partyA = req.body.phoneNumber; //should follow the format:2547xxxxxxxx
     let partyB = process.env.lipa_na_mpesa_shortcode;
     let phoneNumber = req.body.phoneNumber; //should follow the format:2547xxxxxxxx
-    // let callBackUrl = "your-ngrok-url/mpesa/lipa-na-mpesa-callback";
-    let callBackUrl = "https://mydomain.com/path";
+    let callBackUrl = "https://9337-41-60-234-129.in.ngrok.io/mpesa/lipa-na-mpesa-callback"   //= "your-ngrok-url/mpesa/lipa-na-mpesa-callback";
+    // let callBackUrl = "https://mydomain.com/path";
     let accountReference = "NC-LTD";
     let transaction_desc = "Payment of Ricky";
 
@@ -102,7 +102,7 @@ class MpesaController {
     //Get the transaction description
     // let message = req.body.Body.stkCallback["ResultDesc"];
     try {
-      let message = req;
+      let message = req.body;
       console.log('message: '+message);
       // console.log(res);
     } catch (err) {
