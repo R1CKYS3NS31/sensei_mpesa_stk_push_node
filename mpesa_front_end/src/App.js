@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import { Home } from './component/home/Home';
-import Pay from './component/pay/Pay';
+
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Routes>
      {/* none existing routes */}
      <Route path='/' exact element={<Home/>}/>
-     <Route path='/pay' element={<Pay/>}/>
+     
      <Route
           path="*"
           element={

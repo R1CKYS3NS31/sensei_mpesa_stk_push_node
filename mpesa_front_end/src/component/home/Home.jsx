@@ -5,11 +5,23 @@ import PhoneInput from "react-phone-number-input";
 
 export const Home = () => {
   const [value, setValue] = useState();
+  const [phoneNumberData, setPhoneNumberData] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target.value);
+    // console.log(value.replace('+',''));
+    postPhoneNumber(value.replace("+", ""));
   };
+  const postPhoneNumber = async (phone) => {
+    const res = await fetch("http://localhost:9000/mpesa/lipa-na-mpesa", {
+      method: "POST",
+      headers: { "Content-TYpe": "application/json" },
+      body: JSON.stringify(phone),
+    });
+    const phoneNumberData = await res.json();
+    setPhoneNumberData(phoneNumberData)
+  };
+
   return (
     <div
       style={{
@@ -31,14 +43,17 @@ export const Home = () => {
       >
         {/* <input type="number" minLength={9} maxLength={9} /> */}
         <PhoneInput
+          required
+          defaultCountry="KE"
+          country={"KE"}
           placeholder="Enter phone number"
           value={value}
           onChange={setValue}
+          limitMaxLength={true}
+          min="700000000"
         />
         <p>{value}</p>
         <input
-          required
-          placeholder="7xxxxxxxxxx"
           type={"submit"}
           value={"Pay via M-pesa"}
           style={{
@@ -55,6 +70,7 @@ export const Home = () => {
           }}
         />
       </form>
+      <span>{phoneNumberData}</span>
     </div>
   );
 };
