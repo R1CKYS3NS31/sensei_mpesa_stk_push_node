@@ -13,13 +13,16 @@ export const Home = () => {
     postPhoneNumber(value.replace("+", ""));
   };
   const postPhoneNumber = async (phone) => {
+    // console.log(JSON.stringify({phoneNumber:phone}));
     const res = await fetch("http://localhost:9000/mpesa/lipa-na-mpesa", {
       method: "POST",
       headers: { "Content-TYpe": "application/json" },
-      body: JSON.stringify(phone),
+      body: JSON.stringify({phoneNumber:phone}),
     });
     const phoneNumberData = await res.json();
-    setPhoneNumberData(phoneNumberData)
+    // setPhoneNumberData(JSON.parse(phoneNumberData))
+    console.log(phoneNumberData);
+
   };
 
   return (
@@ -70,7 +73,7 @@ export const Home = () => {
           }}
         />
       </form>
-      <span>{phoneNumberData}</span>
+      {/* <span>{phoneNumberData}</span> */}
     </div>
   );
 };
