@@ -33,6 +33,10 @@ class MpesaController {
   }
 
   async lipaNaMpesaOnline(req, res) {
+    // get phone number
+    // const telNumber = req.body.phoneNumber
+    // console.log(telNumber);
+
     let token = req.token;
     let auth = `Bearer ${token}`;
 
@@ -47,10 +51,10 @@ class MpesaController {
       `${bs_short_code}${passkey}${timestamp}`
     ).toString("base64");
     let transcation_type = "CustomerPayBillOnline";
-    let amount = "10"; //you can enter any amount
-    let partyA = "254705584390"; //should follow the format:2547xxxxxxxx
+    let amount = "1"; //you can enter any amount
+    let partyA = req.body.phoneNumber; //should follow the format:2547xxxxxxxx
     let partyB = process.env.lipa_na_mpesa_shortcode;
-    let phoneNumber = "254705584390"; //should follow the format:2547xxxxxxxx
+    let phoneNumber = req.body.phoneNumber; //should follow the format:2547xxxxxxxx
     // let callBackUrl = "your-ngrok-url/mpesa/lipa-na-mpesa-callback";
     let callBackUrl = "https://mydomain.com/path";
     let accountReference = "NC-LTD";
