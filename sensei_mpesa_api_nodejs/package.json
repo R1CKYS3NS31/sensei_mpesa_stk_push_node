@@ -1,0 +1,24 @@
+{
+  "name": "sensei_mpesa_stk_push_node",
+  "version": "1.0.0",
+  "description": "lipa na mpesa stk push",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "ngrok": "ngrok http 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "sensei_mpesa_stk_push_node"
+  },
+  "author": "ricky_sensei",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "ngrok": "^3.3.0",
+    "nodemon": "^2.0.6"
+  }
+}
