@@ -55,7 +55,8 @@ class MpesaController {
     let partyA = req.body.phoneNumber; //should follow the format:2547xxxxxxxx
     let partyB = process.env.lipa_na_mpesa_shortcode;
     let phoneNumber = req.body.phoneNumber; //should follow the format:2547xxxxxxxx
-    let callBackUrl = "https://9337-41-60-234-129.in.ngrok.io/mpesa/lipa-na-mpesa-callback"   //= "your-ngrok-url/mpesa/lipa-na-mpesa-callback";
+    let callBackUrl =
+      "http://192.168.43.88:9000/mpesa/lipa-na-mpesa-callback"; //= "your-ngrok-url/mpesa/lipa-na-mpesa-callback";
     // let callBackUrl = "https://mydomain.com/path";
     let accountReference = "NC-LTD";
     let transaction_desc = "Payment of Ricky";
@@ -84,11 +85,12 @@ class MpesaController {
           }
         )
         .catch(console.log);
-
+        
       return res.send({
         success: true,
         message: data,
       });
+      
     } catch (err) {
       return res.send({
         success: false,
@@ -98,21 +100,21 @@ class MpesaController {
     }
   }
 
-  lipaNaMpesaOnlineCallback(req, res) {
-    //Get the transaction description
-    // let message = req.body.Body.stkCallback["ResultDesc"];
+  async lipaNaMpesaOnlineCallback(req, res) {
     try {
-      let message = req.body;
-      console.log('message: '+message);
-      // console.log(res);
+      const message = await req.body; //req.body.Body.stkCallback["ResultDesc"];
+      console.log(message);
+      res.send({
+        success: true,
+        message: message,
+      });
     } catch (err) {
+      res.send({
+        success: false,
+        message: err,
+      });
       console.error(err);
-      return res.send({
-      success: true,
-      message:err,
-    });
     }
   }
 }
-
 module.exports = new MpesaController();
